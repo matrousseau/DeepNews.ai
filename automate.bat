@@ -1,0 +1,2 @@
+@echo off
+cmd /k "D:\Venv\DeepNewsEnv\Scripts\activate & cd IACrawler & scrapy crawl MediumCrawler -o MediumCrawler.csv & scrapy crawl actuia -o actuia.csv & scrapy crawl dscentral -o dscentral.csv & scrapy crawl itsocial -o itsocial.csv & scrapy crawl MediumML -o MediumML.csv & scrapy crawl MediumDS -o MediumDS.csv & scrapy crawl MediumAI -o MediumAI.csv &  scrapy crawl mediumtech -o MediumTech.csv & scrapy crawl approximatelycorrect -o approximatelycorrect.csv & scrapy crawl kdnuggets -o kdnuggets.csv & cd .. & python Main.py"

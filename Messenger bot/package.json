@@ -1,0 +1,23 @@
+{
+  "name": "deepnews",
+  "version": "1.0.0",
+  "description": "messenger bot for DeepNews.ai",
+  "main": "index.js",
+  "engines": {
+    "node": "10.15.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arthur Pace",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.438.0",
+    "body-parser": "^1.18.3",
+    "busboy": "^0.3.1",
+    "csv": "^5.1.1",
+    "express": "^4.16.4",
+    "fast-csv": "^2.4.1",
+    "request": "^2.88.0"
+  }
+}
