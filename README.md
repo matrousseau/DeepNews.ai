@@ -105,12 +105,19 @@ This task is done using the class DailyData. There are two functions to clean th
 
 Then, in the main.py file, we load every file to add it in a huge csv file and then we save this file locally by calling it 'AI_articles_dataset.csv'.
 
-
 ### 3. Predict articles 
 
 Once we have our articles of the day cleaned, we need to select 3 articles for each user depending on his preferences. 
 
 In a firt time, we need to collect many data to build a recommendation system. Since we start with no data, there is a problem called the "Cold Start problem", which mean we have to give to users articles without knowing their preferences.
 
-We will first use a classical neural network with embedding to make a classification between articles. Each user has his own file with his history of what he has read. We initialize it with a default file and then each day we add the previous day's data depending on whether or not he has read his articles.
+We will first use a basic neural network with transfer learning (ELMO) for the embbeding layer to make a classification between articles. Each user has his own file with his history of what he has read. We initialize it with a default file and then each day we add the previous day's data depending on whether or not he has read his articles.
 
+The file **TrainModel.py** works in several steps :
+
+1. Add the label from the previous day
+2. Preprocessing on the daily data
+3. Retraining of the model with new data
+4. Predict 3 best articles and upload it on AWS S3
+
+As soon as we have the 3 predicted articles uploaded on S3, the messenger bot is able to send the customized articles for each user. 
