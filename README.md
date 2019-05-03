@@ -1,5 +1,8 @@
-# DeepNews.ai
 
+---
+title: 'DeepNews.ai'
+---
+===
 The objective of this project is to develop a messenger bot, which provides a technological watch on a specific theme (artificial intelligence in our case).
 
 The project operates in several stages:
@@ -121,3 +124,208 @@ The file **TrainModel.py** works in several steps :
 4. Predict 3 best articles and upload it on AWS S3
 
 As soon as we have the 3 predicted articles uploaded on S3, the messenger bot is able to send the customized articles for each user. 
+
+## Part 2 Create your own Messenger bot
+
+### Table of Contents
+
+[TOC]
+
+### Prerequisites
+
+Here is what you need to follow this tutorial and set up your messenger bot : 
+
+1. **Node.js**
+2. **npm** (node package manager)
+3. **Heroku Toolbelt**
+4. **Git**
+5. **A Facebook page**
+
+Install Node.js
+---
+![Node.js](https://imagizer.imageshack.com/img921/6763/sqcMd4.png =80x50)
+
+**What is Node.js?**
+
+One day, there was a guy named Ryan Dahl who had the brilliant idea of taking the V8 Javascript engine, it's the one found in the Chrome browser, and using it outside the browser. He created the Node.js platform! It is an open source development platform for executing JavaScript code server-side. Node is useful for developing applications that require a persistent connection from the browser to the server and is often used for real-time applications such as chat, news feeds and web push notifications.
+
+> Download node.js here: https://nodejs.org/en/download/
+
+When your download and set up of Node.js are finished, make sure that Node.js is correctly installed on your machine by simply typing in your command prompt: `node -v`
+If Node.js is installed you will see its version.
+
+Install npm
+---
+![npm](https://imagizer.imageshack.com/img924/8606/6HNgAQ.png =50x25)
+
+**What is npm ?**
+
+npm is the package manager for the Node JavaScript platform. It puts modules in place so that node can find them, and manages dependency conflicts intelligently.
+
+> npm website: https://www.npmjs.com/
+
+npm is distributed with Node.js which means that when you download Node.js, you automatically get npm installed on your computer. Make sure that npm is correctly installed on your machine by simply typing in your command prompt: `npm -v`
+If npm is installed you will see its version.
+
+Install Heroku Toolbelt
+---
+![heroku](https://imagizer.imageshack.com/img923/9985/ive8Fn.png =125x40)
+
+**What is Heroku ?**
+
+Heroku is a cloud platform as a service (PaaS) supporting several programming languages. Heroku, one of the first cloud platforms, has been in development since June 2007, when it supported only the Ruby programming language, but now supports Java, Node.js, Scala, Clojure, Python, PHP, and Go.
+
+> Download Heroku Toolbelt here: https://nodejs.org/en/download/
+
+Make sure that Heroku Toolbelt is correctly installed on your machine by simply typing in your command prompt: `heroku -v`
+If Heroku is installed you will see its version.
+
+Install Git
+---
+![git](https://imagizer.imageshack.com/img924/6743/u52DgE.png =70x30)
+
+**What is Git ?**
+
+Git is a distributed version-control system for tracking changes in source code during software development. It is designed for coordinating work among programmers, but it can be used to track changes in any set of files. Its goals include speed, data integrity, and support for distributed, non-linear workflows.
+
+> Download Git here: https://git-scm.com/downloads
+
+Make sure that Git is correctly installed on your machine by simply typing in your command prompt: `git --version`
+If git is installed you will see its version.
+
+
+## Initialize your local environment
+
+Now that we have all the necessary tools, let's create our local environment. Start by opening a new command prompt.
+
+1. Go to the directory of your choice, in this example I go to my desktop: 
+```
+cd C:\Users\myUserName\desktop
+``` 
+2. Create a new folder and give it the name of your bot
+```
+mkdir myMessengerBot
+``` 
+3. Go to your Facebook Messenger bot folder
+```
+cd myMessengerBot
+``` 
+4. Set up your heroku account with your Facebook Messenger bot folder 
+```
+heroku login
+``` 
+5. Update npm
+```
+npm install npm --global
+``` 
+6. Initialize npm
+
+When I leave the fields empty it is because you are not required to put something in them
+```
+npm init
+
+name: myMessengerBot
+version: 1.0.0
+description:
+entry point: index.js
+test command:
+git repository:
+keywords:
+author: yourName
+license: MIT
+``` 
+Now, if you have configured your folder with npm correctly, you will be able to see package.json in your myMessengerBot folder there:
+
+![package](https://imagizer.imageshack.com/img921/4219/BNfOWX.png =130x)
+
+7. Install Node.js modules
+```
+npm install express request $ body-parser —save
+``` 
+After this step, your myMessengerBot folder looks like this:
+
+![modules](https://hostpic.xyz/files/15568857881773599074.png =160x)
+
+8. Download the Javascript code needed
+
+> **FacebookBot-master.zip** 
+> https://codeload.github.com/elmehdimobi/FacebookBot/zip/master
+*Thanks to El Mehdi LAIDOUNI for the code.*
+
+And put it on your desktop. You now have these two folders on your desktop:
+
+![package](https://imagizer.imageshack.com/img923/4925/Pjg136.png =200x)
+
+9. Now, unzip the FacebookBot-master.zip file and you will be able to see this:
+
+![package](https://hostpic.xyz/files/15568854432500921323.png =220x)
+
+10. Copy and paste these two files from the unzip fodler to your myMessenger bot folder: 
+- Procfile
+- index.js
+
+Now, we are here, your local environment **myMessengerBot** is ready: 
+![package](https://hostpic.xyz/files/15568861272808899595.png =150x)
+
+## Configure your Facebook developer account
+
+Now that our local environment is ready, let's configure our developer facebook account.
+
+1. Go to the Facebook developers website
+> https://developers.facebook.com/apps/
+
+2. Create a new app (click on "Add a new app")
+3. Go to "Messenger" section and clikc on "Get started" button
+4. In the "Access token" section, select your Facebook page
+5. Copy your token
+6. Paste it in your index.js file at the right place:
+```
+var token = "entrez votre token ici"
+```
+> *Translation: "entrez votre token ici" = "enter your token here"*
+
+## Configure your Heroku account
+
+Now that our local environment is ready and our facebook developer account is ready too, let's configure our heroku account.
+
+1. Go to myMessengerBot folder on your desktop and open a cmd
+2. Initialize git
+```
+git init
+```
+3. Create your app (bot) on heroku by enter your app name
+```
+heroku create myMessengerBot
+```
+So you will get the callback URL of your application, which you can copy now in your clipboard, it looks like:
+
+> Callback URL: https://myMessengerBot.herokuapp.com/
+> 
+4. Now, if you go to Heroku dashboard, you will see your app
+> https://dashboard.heroku.com/apps
+5. Before continuing, make a first commit to heroku to initialize your application
+```
+git add .
+git commit -am "your message"
+git push heroku master
+```
+
+## Link Heroku with Facebook
+
+1. Go back to your facebook developer dashboard
+> https://developers.facebook.com/apps/
+2. Click on your app
+3. Go to the "Messenger" tab
+4. Click on "Settings"
+5. Go to "webhooks" section
+6. Click on "Edit events"
+7. 
+
+
+## Appendix and FAQ
+
+:::info
+**Find this document incomplete?** Leave a comment!
+:::
+
+###### tags: `Messenger` `Bot` `Node.js` `npm` `Heroku` `Facebook` `Javascript`
