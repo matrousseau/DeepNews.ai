@@ -96,4 +96,21 @@ cmd /k "MyPythonEnvironnement\Scripts\activate & scrapy crawl MediumAI -o Medium
 ```
 It should store all your csv files in the same folder. Now we have to clean all this data to make predictions. 
 
-### 2. Collect data
+### 2. Clean data
+
+
+Since all the csv are stored in the same folder, we can load them and clean them in order to create a simple csv file with all the articles/links/dates. 
+
+This task is done using the class DailyData. There are two functions to clean the csv files because differents websites return data with differents structures.
+
+Then, in the main.py file, we load every file to add it in a huge csv file and then we save this file locally by calling it 'AI_articles_dataset.csv'.
+
+
+### 3. Predict articles 
+
+Once we have our articles of the day cleaned, we need to select 3 articles for each user depending on his preferences. 
+
+In a firt time, we need to collect many data to build a recommendation system. Since we start with no data, there is a problem called the "Cold Start problem", which mean we have to give to users articles without knowing their preferences.
+
+We will first use a classical neural network with embedding to make a classification between articles. Each user has his own file with his history of what he has read. We initialize it with a default file and then each day we add the previous day's data depending on whether or not he has read his articles.
+
